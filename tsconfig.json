@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "module": "ESNext",
+        "outDir": "dist",
+        "rootDir": "src",
+        "target": "ESNext",
+        "jsx": "react-jsx",
+        "moduleResolution": "node",
+        // cjs的包 用default导入会出现错误
+        "esModuleInterop": true
+    },
+    "exclude": ["**/node_modules/**", "**/dist/**", "tsup.config.ts"]
+}
