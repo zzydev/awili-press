@@ -9,12 +9,6 @@
     // cjs的包 用default导入会出现错误
     "esModuleInterop": true
   },
-  "exclude": [
-    "**/node_modules/**",
-    "**/dist/**",
-    "**/playground/**",
-    "tsup.config.ts",
-    "vitest.config.ts",
-    "playwright.config.ts"
-  ]
+  "include": ["e2e/**/*.ts", "src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["e2e/*.ts"]
 }
