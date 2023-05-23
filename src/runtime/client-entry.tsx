@@ -1,5 +1,8 @@
 import { createRoot } from 'react-dom/client';
 import { App } from './app';
+import siteData from 'awili:site-data';
+
+console.log(siteData);
 
 function renderInBrowser() {
   const containerEl = document.getElementById('root');
