@@ -1,0 +1,6 @@
+lockfileVersion: '6.0'
+
+dependencies:
+  awili-press:
+    specifier: ../../..
+    version: link:../../..
