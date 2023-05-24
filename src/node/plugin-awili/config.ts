@@ -1,12 +1,14 @@
 import { relative } from 'path';
 import { Plugin } from 'vite';
 import { SiteConfig } from 'shared/types/index';
+import { join } from 'path';
+import { PACKAGE_ROOT } from 'node/constants';
 
 const SITE_DATA_ID = 'awili:site-data';
 
 export function pluginConfig(
   config: SiteConfig,
-  restartServer: () => Promise<void>
+  restartServer?: () => Promise<void>
 ): Plugin {
   return {
     name: 'awili:config',
@@ -20,7 +22,16 @@ export function pluginConfig(
         return `export default ${JSON.stringify(config.siteData)}`;
       }
     },
-
+    config() {
+      return {
+        root: PACKAGE_ROOT,
+        resolve: {
+          alias: {
+            '@runtime': join(PACKAGE_ROOT, 'src', 'runtime', 'index.ts')
+          }
+        }
+      };
+    },
     async handleHotUpdate(ctx) {
       const customWatchedFiles = [config.configPath];
       const include = (id: string) =>
