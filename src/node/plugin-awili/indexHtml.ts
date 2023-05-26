@@ -4,7 +4,7 @@ import { CLIENT_ENTRY_PATH, DEFAULT_HTML_PATH } from '../constants';
 
 export function pluginIndexHtml(): Plugin {
   return {
-    name: 'island:index-html',
+    name: 'awili:index-html',
     apply: 'serve',
     // 插入入口 script 标签
     transformIndexHtml(html) {
