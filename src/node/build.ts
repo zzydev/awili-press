@@ -3,11 +3,8 @@ import type { RollupOutput } from 'rollup';
 import { CLIENT_ENTRY_PATH, SERVER_ENTRY_PATH } from './constants';
 import path, { join } from 'path';
 import fs from 'fs-extra';
-import ora from 'ora';
-import config from '../../playwright.config';
 import { SiteConfig } from 'shared/types';
-import pluginReact from '@vitejs/plugin-react';
-import { pluginConfig } from './plugin-awili/config';
+import { createVitePlugins } from './vitePlugins';
 
 //hack
 //const dynamicsImport = new Function('m',`return import(m)`);
@@ -16,7 +13,7 @@ export async function bundle(root: string, config: SiteConfig) {
   const resolveViteConfig = (isServer: boolean): InlineConfig => ({
     mode: 'production',
     root,
-    plugins: [pluginReact(), pluginConfig(config)],
+    plugins: createVitePlugins(config),
     ssr: {
       // 注意加上这个配置，防止 cjs 产物中 require ESM 的产物，因为 react-router-dom 的产物为 ESM 格式
       noExternal: ['react-router-dom']
@@ -33,9 +30,6 @@ export async function bundle(root: string, config: SiteConfig) {
       }
     }
   });
-  const spinner = ora();
-
-  // spinner.start(`Building client + server bundles...`);
 
   try {
     const [clientBundle, serverBundle] = await Promise.all([
@@ -81,7 +75,7 @@ export async function renderPage(
 
 export async function build(root: string = process.cwd(), config: SiteConfig) {
   // 1. bundle - client 端 + server 端
-  const [clientBundle, serverBundle] = await bundle(root, config);
+  const [clientBundle] = await bundle(root, config);
   // 2. 引入 server-entry 模块
   const serverEntryPath = join(root, '.temp', 'ssr-entry.js');
   const { render } = await import(serverEntryPath);
