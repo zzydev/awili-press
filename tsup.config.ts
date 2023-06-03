@@ -6,7 +6,7 @@ export default defineConfig({
     './src/node/index.ts',
     './src/node/dev.ts'
   ],
-  clean: true, //清空之前的构建产物
+  clean: true, //清空 之前的构建产物
   bundle: true,
   splitting: true,
   minify: process.env.NODE_ENV === 'production',
