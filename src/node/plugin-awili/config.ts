@@ -32,6 +32,7 @@ export function pluginConfig(
         }
       };
     },
+    // ctx DevServer root
     async handleHotUpdate(ctx) {
       const customWatchedFiles = [config.configPath];
       const include = (id: string) =>

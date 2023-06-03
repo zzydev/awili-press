@@ -1,7 +1,6 @@
 import cac from 'cac';
 import { resolve } from 'path';
 import { build } from './build';
-import { createDevServer } from './dev';
 import { resolveConfig } from './config';
 
 const cli = cac('awili').version('0.0.1').help();
