@@ -59,6 +59,7 @@
         "eslint-plugin-prettier": "^4.2.1",
         "fast-glob": "^3.2.12",
         "fs-extra": "^10.1.0",
+        "hast-util-from-html": "^1.0.2",
         "ora": "^6.1.2",
         "prettier": "^2.8.8",
         "react": "^18.2.0",
@@ -72,6 +73,7 @@
         "remark-mdx-frontmatter": "^3.0.0",
         "remark-parse": "^10.0.2",
         "remark-rehype": "^10.1.0",
+        "shiki": "^0.14.3",
         "unified": "^10.1.2",
         "vite": "^3.2.1"
     }
