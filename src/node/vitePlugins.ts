@@ -7,7 +7,8 @@ import { pluginMdx } from './plugin-mdx';
 
 export async function createVitePlugins(
   config: SiteConfig,
-  restartServer?: () => Promise<void>
+  restartServer?: () => Promise<void>,
+  isSSR = false
 ) {
   return [
     pluginIndexHtml(),
@@ -16,7 +17,8 @@ export async function createVitePlugins(
     }),
     pluginConfig(config, restartServer),
     pluginRoutes({
-      root: config.root
+      root: config.root,
+      isSSR
     }),
     // 这里返回的是插件数组，vite的 plugins 配置本身也是支持数组的形式
     await pluginMdx()

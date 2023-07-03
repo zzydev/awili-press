@@ -1,10 +1,17 @@
 import { Plugin } from 'vite';
 import { RouteService } from './RouteService';
 
+export interface Route {
+  path: string;
+  element: React.ReactElement;
+  filePath: string;
+}
+
 // 本质: 把文件目录结构 -> 路由数据
 
 interface PluginOptions {
   root: string;
+  isSSR: boolean;
 }
 
 export const CONVENTIONAL_ROUTE_ID = 'awili:routes';
@@ -25,7 +32,7 @@ export function pluginRoutes(options: PluginOptions): Plugin {
 
     load(id: string) {
       if (id === '\0' + CONVENTIONAL_ROUTE_ID) {
-        return routeService.generateRoutesCode();
+        return routeService.generateRoutesCode(options.isSSR || false);
       }
     }
   };
