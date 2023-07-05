@@ -1,13 +1,19 @@
-import { Content } from '@runtime';
+import { usePageData } from '@runtime';
 import 'uno.css';
 
 export function Layout() {
-  return (
-    <div>
-      <h1 p="6" m="2" className="text-red-500">
-        Layout
-      </h1>
-      <Content />
-    </div>
-  );
+  const pageData = usePageData();
+  // 获取 pageType
+  const { pageType } = pageData;
+  // 根据 pageType 分发不同的页面内容
+  const getContent = () => {
+    if (pageType === 'home') {
+      return <div>Home 页面</div>;
+    } else if (pageType === 'doc') {
+      return <div>正文页面</div>;
+    } else {
+      return <div>404 页面</div>;
+    }
+  };
+  return <div>{getContent()}</div>;
 }
